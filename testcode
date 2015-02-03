@@ -1,0 +1,79 @@
+package window;
+
+import java.util.Scanner;
+import javax.swing.*;
+import java.io.*;
+import java.util.*;
+
+public class Test {
+	
+	public static void main(String args[])
+			throws InterruptedException,IOException
+	{
+		
+		//Runtime.getRuntime().exec("C:/Program Files (x86)/Microsoft Office/Office12/OUTLOOK.exe /c ipm.note /a \"C:/Users/WIN 8/Desktop/Job_sites.png\"");
+		
+		//("C:/Program Files (x86)/Microsoft Office/Office12/OUTLOOK.exe /c ipm.note /a \"C:/Users/WIN 8/Desktop/Job_sites.png\"");
+		
+		
+		try {
+		      String line;
+		 
+		      
+		      String x = "C:/Program Files (x86)/Microsoft Office/Office12/OUTLOOK.exe "
+			      		+ "/c ipm.note "
+			      		+ "/m \"&subject=Your attachment || By Palak 2.0 \" " ;
+			      
+		      String y = "/a \"C:/Users/WIN 8/Desktop/hjasdasd.jpg\"" ;
+	 
+		      
+		      System.out.println(x+y);
+		      
+		      Process p = Runtime.getRuntime().exec(x+y);
+		
+		      BufferedReader bri = new BufferedReader
+		        (new InputStreamReader(p.getInputStream()));
+		      BufferedReader bre = new BufferedReader
+		        (new InputStreamReader(p.getErrorStream()));
+		      while ((line = bri.readLine()) != null) 
+		      {
+		        System.out.println(line);
+		      }
+		      bri.close();
+		      while ((line = bre.readLine()) != null) 
+		      {
+		        System.out.println(line);
+		      }
+		      bre.close();
+		      p.waitFor();
+		      System.out.println("Done.");
+		    }
+		    catch (Exception err) 
+		    {
+		      err.printStackTrace();
+		    }
+		
+		/*
+		Scanner scrinput = new Scanner(System.in);
+		System.out.println("Press the Button\n");
+	    String myInt = scrinput.nextLine();
+		System.out.println("This is the Input \n" + myInt); 
+		scrinput.close();
+		
+		
+		JFileChooser f = new JFileChooser();
+        f.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY); 
+        f.showSaveDialog(null);
+        
+//It will open in the BackGround Dood        
+        //System.out.println(f.getCurrentDirectory());
+        //System.out.println(f.getSelectedFile());
+        
+        String s;
+        s = f.getSelectedFile().getPath();
+        System.out.println(s);
+        
+        */
+	}
+}	
+
