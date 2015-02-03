@@ -1,0 +1,19 @@
+
+package window;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+
+
+class Myaction implements ActionListener
+{
+	String date ;
+	
+	public void actionPerformed (ActionEvent x)
+	{
+	ClickAction.action();
+	
+	}
+	
+}
