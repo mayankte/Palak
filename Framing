@@ -1,0 +1,113 @@
+package window;
+import javax.swing.*;
+
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.event.*;
+import java.awt.*;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Rectangle;
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.util.Scanner;
+
+import javax.imageio.ImageIO;
+ 
+
+
+
+public class Framing {
+	public Framing() {
+		// TODO Auto-generated constructor stub
+	}
+
+	static JFrame  myframe ;
+
+	
+	public static void main(String[] args) {	
+		//Creating the base frame and its dynamics
+		myframe= new JFrame ("Palak 2.0");
+
+		myframe.pack();
+		myframe.setVisible(true);
+
+		myframe.setSize(300, 100);
+	    myframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		myframe.setLocation(990, 550);
+		myframe.setLayout(new BorderLayout());
+
+		
+	//Creating Panel
+	JPanel mypanel = new JPanel(new GridBagLayout());
+	
+	/* Adding Panel to the Frame , Key Action 
+	 * and set the Grid coordinate axis to top left using the getContentPane and borderLayout.North
+	 */
+	
+	myframe.getContentPane().add(mypanel,BorderLayout.NORTH);
+	
+// CODE BLOCK for choosing the folder--------------------------------------------------------------------------------	
+	// Making the Grid Settings
+	GridBagConstraints click = new GridBagConstraints();
+	GridBagConstraints  mail = new GridBagConstraints();
+
+	
+/*	// Creating Label
+	JLabel mylabel = new JLabel("Choose Your Folder");
+
+
+//Adding Label to the Panel
+	mypanel.add(mylabel,grid);
+
+*/
+	
+// --------------------------------------------------------------------------------
+	
+	
+	// Creating the Button
+	JButton mybutton = new JButton("Capture n store");
+	click.fill = GridBagConstraints.BOTH;
+    click.gridx = 0;
+	click.gridy = 0;
+	click.insets = new Insets(15,0,0,5);
+
+	
+	//	grid.insets = new Insets(20,20,2,20);
+
+	// Add the Button to the Panel
+	mypanel.add(mybutton,click);
+
+	
+	
+	JButton email = new JButton("Send by mail");
+	  mail.fill = GridBagConstraints.BOTH;
+	  mail.gridx = 1;
+	  mail.gridy = 0;
+	  mail.insets = new Insets(15,0,0,0);
+	
+	mypanel.add(email,mail);
+	
+	mybutton.addActionListener(new Myaction());
+	email.addActionListener(new Email());
+	
+	}
+
+	
+}
+
+
+
+
+
+
+
+
