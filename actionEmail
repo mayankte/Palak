@@ -1,0 +1,89 @@
+package window;
+
+import java.awt.Dimension;
+import java.awt.Rectangle;
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.InputStreamReader;
+
+import javax.imageio.ImageIO;
+import javax.swing.JFileChooser;
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+
+class Email implements ActionListener 
+{
+	String date ;
+	
+	public void actionPerformed (ActionEvent z)
+	{		
+		
+	String path ;
+	
+	path = ClickAction.action() ;
+	
+	//System.out.println(path);
+
+	if(path != "init")
+	
+	{
+    path = path.replace("\\","/") ;
+
+    
+    //System.out.println(path);
+	
+	try {
+	      String line;
+	 
+	      
+	      String x = "C:/Program Files (x86)/Microsoft Office/Office12/OUTLOOK.exe "
+		      		+ "/c ipm.note "
+		      		+ "/m \"&subject=Your attachment || By Palak 2.0 \" "
+		      		+ "/a \"" ;
+		      
+	      //String y = "  /a \"C:/Users/WIN 8/Desktop/Job_sites.png\"  " ;
+	    		  
+
+	      String l = path.concat("\"");
+	    		  
+	      System.out.println(x+l);
+	  	
+	      
+	      // C:/Program Files (x86)/Microsoft Office/Office12/OUTLOOK.exe /c ipm.note 
+	      // /m "&subject=Your attachment || By Palak 2.0 "
+	      // /a "C:/Users/WIN 8/Desktop/Job_sites.png"
+	      
+	      Process p = Runtime.getRuntime().exec(x+l);
+	
+	      BufferedReader bri = new BufferedReader
+	        (new InputStreamReader(p.getInputStream()));
+	      BufferedReader bre = new BufferedReader
+	        (new InputStreamReader(p.getErrorStream()));
+	      while ((line = bri.readLine()) != null) 
+	      {
+	        System.out.println(line);
+	      }
+	      bri.close();
+	      while ((line = bre.readLine()) != null) 
+	      {
+	        System.out.println(line);
+	      }
+	      bre.close();
+	      p.waitFor();
+	      System.out.println("Done.");
+	    }
+	    catch (Exception err) 
+	    {
+	      err.printStackTrace();
+	    }
+		}
+	
+	}
+	
+	}
