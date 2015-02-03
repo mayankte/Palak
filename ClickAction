@@ -1,0 +1,78 @@
+package window;
+
+import java.awt.Dimension;
+import java.awt.Rectangle;
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import java.io.File;
+
+import javax.imageio.ImageIO;
+import javax.swing.JFileChooser;
+import javax.swing.*;
+
+public class ClickAction  {
+
+	
+public static String action() 
+{
+
+Framing.myframe.setState(JFrame.ICONIFIED);
+	
+	String filename = "init";
+		
+	try {
+        Toolkit tk = Toolkit.getDefaultToolkit(); //Toolkit class returns the default toolkit
+        Dimension dim = tk.getScreenSize();
+
+//Dimension class object stores width & height of the toolkit screen
+//toolkit.getScreenSize() determines the size of the screen
+
+        Rectangle rec = new Rectangle(0, 0, dim.width, dim.height);  
+//Creates a Rectangle with screen dimensions, here we are capturing the entire screen,if you want you can change it accordingly (i.e you can also capture a particular area on the screen)          
+                  
+        Robot ro = new Robot(); //a very important class to capture the screen image
+        BufferedImage img_object = ro.createScreenCapture(rec);
+
+//createScreenCapture() method takes Rectangle class instance as argument and returns BufferedImage
+        
+        
+    	JFileChooser f = new JFileChooser();
+    	f.setCurrentDirectory(new File("C:/Users/WIN 8/Desktop")); // Setting default Directory
+        f.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES); 
+        f.showSaveDialog(null);
+//Opening the file Browser using JFileChooser API 
+        
+        //System.out.println(f.getCurrentDirectory());
+        //System.out.println(f.getSelectedFile());
+        
+        String fname = f.getSelectedFile().getPath();
+
+        //new File(location).mkdir();
+      
+        
+         File sshot =	 new File(fname + ".jpg"); 
+         // File class is used to write the above generated buffered image to a file
+       
+         ImageIO.write(img_object, "jpg", sshot);
+//ImageIO is an API which is used to convert BufferedImage to a png/jpg image     
+ 
+	filename = fname.concat(".jpg");
+	
+	} 
+	catch (Exception ex) 
+	{
+        System.out.println(ex.getMessage());
+    }
+	
+	Framing.myframe.setState(JFrame.NORMAL);	
+
+	return filename ; 
+	
+
+}
+
+
+
+}
+
